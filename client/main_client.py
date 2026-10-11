@@ -14,7 +14,8 @@ def main():
             search_type = choose_search_type()
             search_value = read_animal_id() if search_type == "id" else read_collar_code()
             result = request_last_reserve(search_type,search_value)
-            show_last_reserve(result)
+            data = result.json()
+            show_last_reserve(data)
     if search_choice == 2:
         while True:
             username = create_a_new_user()

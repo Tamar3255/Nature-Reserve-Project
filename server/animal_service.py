@@ -27,6 +27,7 @@ def find_last_reserve(search_type: str, search_value):
 
 def find_id_by_collar(collar_code:str) -> int:
     print(collar_code)
+    con = get_conaction()
     cur = con.cursor()
     cur. execute('''SELECT id FROM animals WHERE collar_code = %s ''', (collar_code,))
     id = cur.fetchone()[0]
@@ -34,4 +35,4 @@ def find_id_by_collar(collar_code:str) -> int:
     return id
 
 
-print(find_last_reserve('id',5))
+# print(find_last_reserve('id',5))
