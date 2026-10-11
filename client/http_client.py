@@ -8,10 +8,12 @@ SERVER_URL = os.getenv("SERVER_URL")
 
 def request_last_reserve(search_type, search_value):
     print(search_type,search_value)
-    params = {"animal id": search_value} if search_type == "id" else {"collar code": search_value}
+    params = {"id": search_value} if search_type == "id" else {"collar code": search_value}
     print(params)
     try:
-        response = requests.get(f"{SERVER_URL}/animal/last-reserve", params=params)
+        response = requests.get(f"{SERVER_URL}/animals/last-reserve", params=params)
+        data = response.json()
+        print(data)
         return response
     except requests.exceptions.RequestException as exc:
             return {"error": exc}
