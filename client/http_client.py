@@ -18,17 +18,36 @@ def request_last_reserve(search_type, search_value):
     except requests.exceptions.RequestException as exc:
             return {"error": exc}
 
-def checking_username(name):
-    params = {"username": name}
-    try:
-        response = requests.get(f"{SERVER_URL}/register/username", params=params)
-        return response
-    except requests.exceptions.ConnectionError:
-        raise ConnectionError("Unable to connect to the server. Ensure the server is active and the address is correct.")
+
 
 def regist_a_new_user(username,password):
     params = [{"username":username,"password": password}]
-    response = requests.get(f"{SERVER_URL}/register/last-reserve", params=params)
+    try:
+        response = requests.post(f"{SERVER_URL}/users/register", json=params)
+        if response == True:
+            print("User successfully added")
+    except requests.exceptions.RequestException as exc:
+            return {"error": exc}
+
+def access_approval(username, password):
+        params = [{"username": username, "password": password}]
+        try:
+            response = requests.get(f"{SERVER_URL}/users/register", json=params)
+            return response
+        except requests.exceptions.RequestException as exc:
+            return {"error": exc}
+
+
+def update_treatment(treatment):
+    params = treatment
+    try:
+        response = requests.post(f"{SERVER_URL}/treatments", json=params)
+        if response == True:
+            print("The treatment update was successfully completed ")
+    except requests.exceptions.RequestException as exc:
+            return {"error": exc}
+
+
     
 
 

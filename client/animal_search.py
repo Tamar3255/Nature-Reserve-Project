@@ -4,11 +4,14 @@ def choose_search_type():
     while True:
         print("for search by 'id' enter 1")
         print("for search by 'collar code' enter 2")
+        print("To go back one step enter 3")
         choice = input("please enter your choice: ")
         if int(choice) == 1:
             return "id"
         if int(choice) == 2:
             return "collar code"
+        if int(choice) == 3:
+            return "back"
         print("try again")
 
 def read_animal_id():

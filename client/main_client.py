@@ -6,21 +6,45 @@ from output import show_last_reserve
 from regist_new_user import (create_a_new_user,
                              create_a_new_password)
 from http_client import regist_a_new_user
+from treatment import create_treatment
+from http_client import access_approval
+from http_client import update_treatment
+
+
+
 
 def main():
-    search_choice = search_selection()
-    if search_choice == 1:
-        while True:
+    while True:
+        search_choice = search_selection()
+        if search_choice == 1:
             search_type = choose_search_type()
+            if search_type == "back":
+                continue
             search_value = read_animal_id() if search_type == "id" else read_collar_code()
             result = request_last_reserve(search_type,search_value)
             data = result.json()
             show_last_reserve(data)
-    if search_choice == 2:
-        while True:
+        if search_choice == 2:
             username = create_a_new_user()
             password = create_a_new_password()
-            regist_a_new_user(username,password)
+            r = regist_a_new_user(username,password)
+            print(r)
+        if search_choice == 3:
+            print("Hello welcome to the treatment registration system. ")
+            username = input("Please enter your username: ")
+            password = input("Please enter your password: ")
+            access_approvd = access_approval(username,password)
+            if access_approvd == True:
+                treatment = create_treatment()
+                update_treatment(treatment)
+
+
+
+
+
+
+
+
 
 def search_selection():
     print("1. Search Animal Last Seen Reserve (Search by ID / Collar Code)"
