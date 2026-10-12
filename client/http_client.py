@@ -20,8 +20,8 @@ def request_last_reserve(search_type, search_value):
 
 
 
-def regist_a_new_user(username,password):
-    params = [{"username":username,"password": password}]
+def regist_a_new_user(username,password,status='check'):
+    params = [{"username":username,"password": password,"status":status}]
     try:
         response = requests.post(f"{SERVER_URL}/users/register", json=params)
         if response == True:
@@ -30,7 +30,7 @@ def regist_a_new_user(username,password):
             return {"error": exc}
 
 def access_approval(username, password):
-        params = [{"username": username, "password": password}]
+        params = [{"username": username, "password": password,"status":"check"}]
         try:
             response = requests.get(f"{SERVER_URL}/users/register", json=params)
             return response

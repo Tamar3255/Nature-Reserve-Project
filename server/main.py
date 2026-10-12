@@ -23,6 +23,32 @@ def animal_last_reserve():
              "description": details[6]
                     })
 
+@app.route('/users/register',methods=['POST'])
+def create_new_user():
+
+    data = request.get_json()
+    status = data[0].get("status")
+    username = data[0].get("username")
+    password = data[0].get("password")
+    if status == "check":
+        checking(username)
+    if status == "create":
+        checking(username,password)
+
+#
+def checking(username,password=None):
+    הפונקציה בודקת האם שם המשתמש והסיסמא קיימים בdb ומחזירה קיים/לא קיים
+    return exists / not exists
+
+
+
+
+
+
+# def check_username():
+
+
+
 
 
 

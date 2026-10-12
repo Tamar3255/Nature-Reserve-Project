@@ -34,9 +34,12 @@ def main():
             username = input("Please enter your username: ")
             password = input("Please enter your password: ")
             access_approvd = access_approval(username,password)
-            if access_approvd == True:
+            if access_approvd == "exists":
                 treatment = create_treatment()
                 update_treatment(treatment)
+            else:
+                print("The entered username or password is incorrect please try again")
+
 
 
 
