@@ -1,5 +1,6 @@
 
 def show_last_reserve(result):
+    print(result)
     print("===Results===")
     print(f"Animal ID: {result["animal_id"]}")
     print(f"Collar code: {result["collar_code"]}")
